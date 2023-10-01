@@ -1,6 +1,6 @@
 from flask import Flask, render_template, json, request, Response
-import capture
-import training
+#import capture
+#import training
 import recognition
 
 app = Flask(__name__)
@@ -18,8 +18,8 @@ def showFormNewPerson():
 def registerPerson():
     try:
         _name = request.form['inputName']
-        capture.captureImages(_name)
-        training.training()     
+        #capture.captureImages(_name)
+        #training.training()     
         return json.dumps({'message': 'Persona creada exitosamente', 'code': 'success'})   
     except Exception as e:
         return json.dumps({'error':str(e), 'code': 'success'})
