@@ -1,7 +1,7 @@
 from flask import Flask, render_template, json, request, Response
-import Capture
+import capture
 import training
-import Recognition
+import recognition
 import cv2
 import os
 
@@ -20,7 +20,7 @@ def showFormNewPerson():
 def registerPerson():
     try:
         _name = request.form['inputName']
-        Capture.captureImages(_name)
+        capture.captureImages(_name)
         training.training()     
         return json.dumps({'message': 'Persona creada exitosamente', 'code': 'success'})   
     except Exception as e:
@@ -32,7 +32,7 @@ def recognitionPerson():
 
 @app.route('/recognitionPersonVideo')
 def recognitionPersonVideo():
-    return Response(Recognition.recognizer(),
+    return Response(recognition.recognizer(),
           mimetype = "multipart/x-mixed-replace; boundary=frame")
 
 if __name__ == "__main__":
