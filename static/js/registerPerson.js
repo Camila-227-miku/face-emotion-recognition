@@ -13,7 +13,7 @@ $(function(){
 					}					
 				}
 				else{
-					alert("Error al crear persona " + response.error)
+					alert("Error al crear persona " + response.message)
 				}
 			},
 			error: function(error){
