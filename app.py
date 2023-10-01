@@ -37,4 +37,4 @@ def recognitionPersonVideo():
           mimetype = "multipart/x-mixed-replace; boundary=frame")
 
 if __name__ == "__main__":
-    app.run(port=5002)
+    app.run()
