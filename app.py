@@ -1,7 +1,9 @@
-from flask import Flask, render_template, json, request
+from flask import Flask, render_template, json, request, Response
 import Capture
 import Training
 import Recognition
+import cv2
+import os
 
 app = Flask(__name__)
 
@@ -26,8 +28,13 @@ def registerPerson():
     
 @app.route('/recognitionPerson')
 def recognitionPerson():
-    Recognition.recognizer()
-    return render_template('index.html')
+    return render_template('recognition.html')
+
+@app.route('/recognitionPersonVideo')
+def recognitionPersonVideo():
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+    return Response(Recognition.recognizer(),
+          mimetype = "multipart/x-mixed-replace; boundary=frame")
 
 if __name__ == "__main__":
     app.run(port=5002)
