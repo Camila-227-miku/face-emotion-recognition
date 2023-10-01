@@ -1,7 +1,7 @@
 from flask import Flask, render_template, json, request, Response
 #import capture
 #import training
-#import recognition
+import recognition
 
 app = Flask(__name__)
 
@@ -27,6 +27,11 @@ def registerPerson():
 @app.route('/recognitionPerson')
 def recognitionPerson():
     return render_template('recognition.html')
+
+@app.route('/recognitionPersonVideo')
+def recognitionPersonVideo():
+    return Response(recognition.recognizer(),
+          mimetype = "multipart/x-mixed-replace; boundary=frame")
 
 if __name__ == "__main__":
     app.run()
