@@ -2,8 +2,6 @@ from flask import Flask, render_template, json, request, Response
 import capture
 import training
 import recognition
-import cv2
-import os
 
 app = Flask(__name__)
 
